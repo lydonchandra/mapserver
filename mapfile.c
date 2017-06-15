@@ -131,6 +131,7 @@ void msFree(void *p)
 }
 #endif
 
+
 /*
 ** Free memory allocated for a character array
 */
@@ -138,10 +139,15 @@ void msFreeCharArray(char **array, int num_items)
 {
   int i;
   if(!array) return;
-  for(i=0; i<num_items; i++)
+  for(i=0; i<num_items; i++) {
+	if(!array[i]) 
+		continue;
+
     msFree(array[i]);
+  }
   msFree(array);
 }
+
 
 /*
 ** Checks symbol from lexer against variable length list of
